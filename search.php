@@ -44,10 +44,10 @@
                 <div class="form-group">
                   <input type="password" name="userPass" placeholder="Password" value="" class="form-control">
                 </div>
-                <button type="submit" name="buttonLogin" class="btn btn-primary">
+                <button type="button" name="buttonLogin" class="btn btn-primary">
                   <i class="fa fa-sign-in" aria-hidden="true"></i> Войти
                 </button>
-                <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#modal-1">Зарегистрироваться</button>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-1">Зарегистрироваться</button>
               </div>
             </div>
           </div>
@@ -57,6 +57,16 @@
 
     <div class="container">
       <div class="row">
+        <div class="form-group">
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="Введите слово для поиска...">
+            <span class="input-group-btn">
+              <button class="btn btn-primary" type="button">
+                <i class="fa fa-search" aria-hidden="true"></i> Найти
+              </button>
+            </span>
+          </div>
+        </div>
         <div class="article col-lg-8 col-md-8 col-sm-6 col-xs-4">
           <h2>Заголовок статьи</h2>
           <h4>Темы: <small>theme1</small> <small>theme2</small> <small>theme3</small> <small>theme4</small></h4>
@@ -70,77 +80,7 @@
             <i class="fa fa-comments-o" aria-hidden="true"></i> <span class="comments-count">10</span>
           </div>
         </div>
-
-        <div class="article col-lg-8 col-md-8 col-sm-6 col-xs-4">
-          <h2>Заголовок статьи</h2>
-          <h4>Темы: <small>theme1</small> <small>theme2</small> <small>theme3</small> <small>theme4</small></h4>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-          </p>
-          <div class="star-block">
-            <i class="fa fa-star-o"></i> <span class="star-count">100</span>
-          </div>
-          <div class="comments-block">
-            <i class="fa fa-comments-o" aria-hidden="true"></i> <span class="comments-count">10</span>
-          </div>
-        </div>
-
-        <div class="article col-lg-8 col-md-8 col-sm-6 col-xs-4">
-          <h2>Заголовок статьи</h2>
-          <h4>Темы: <small>theme1</small> <small>theme2</small> <small>theme3</small> <small>theme4</small></h4>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-          </p>
-          <div class="star-block">
-            <i class="fa fa-star-o"></i> <span class="star-count">100</span>
-          </div>
-          <div class="comments-block">
-            <i class="fa fa-comments-o" aria-hidden="true"></i> <span class="comments-count">10</span>
-          </div>
-        </div>
-
-        <div class="article col-lg-8 col-md-8 col-sm-6 col-xs-4">
-          <h2>Заголовок статьи</h2>
-          <h4>Темы: <small>theme1</small> <small>theme2</small> <small>theme3</small> <small>theme4</small></h4>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-          </p>
-          <div class="star-block">
-            <i class="fa fa-star-o"></i> <span class="star-count">100</span>
-          </div>
-          <div class="comments-block">
-            <i class="fa fa-comments-o" aria-hidden="true"></i> <span class="comments-count">10</span>
-          </div>
-        </div>
-
-        <div class="article col-lg-8 col-md-8 col-sm-6 col-xs-4">
-          <h2>Заголовок статьи</h2>
-          <h4>Темы: <small>theme1</small> <small>theme2</small> <small>theme3</small> <small>theme4</small></h4>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-          </p>
-          <div class="star-block">
-            <i class="fa fa-star-o"></i> <span class="star-count">100</span>
-          </div>
-          <div class="comments-block">
-            <i class="fa fa-comments-o" aria-hidden="true"></i> <span class="comments-count">10</span>
-          </div>
-        </div>
-
-        <div class="article col-lg-8 col-md-8 col-sm-6 col-xs-4">
-          <h2>Заголовок статьи</h2>
-          <h4>Темы: <small>theme1</small> <small>theme2</small> <small>theme3</small> <small>theme4</small></h4>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-          </p>
-          <div class="star-block">
-            <i class="fa fa-star-o"></i> <span class="star-count">100</span>
-          </div>
-          <div class="comments-block">
-            <i class="fa fa-comments-o" aria-hidden="true"></i> <span class="comments-count">10</span>
-          </div>
-        </div>
-        <ul class="pagination">
+        <!-- <ul class="pagination">
           <li class="disabled"><a href="#">«</a></li>
           <li class="active"><a href="#">1</a></li>
           <li><a href="#">2</a></li>
@@ -148,7 +88,7 @@
           <li><a href="#">4</a></li>
           <li><a href="#">5</a></li>
           <li><a href="#">»</a></li>
-        </ul>
+        </ul> -->
       </div>
     </div>
 
