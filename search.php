@@ -2,10 +2,11 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
+    <link rel="shortcut icon" href="/images/tux.png" type="image/png">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
-    <title>Bootstrap 101 Template</title>
+    <title>Поиск статей</title>
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/css/main.css">
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -47,7 +48,7 @@
                 <button type="button" name="buttonLogin" class="btn btn-primary">
                   <i class="fa fa-sign-in" aria-hidden="true"></i> Войти
                 </button>
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-1">Зарегистрироваться</button>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-1">Регистрация</button>
               </div>
             </div>
           </div>
@@ -102,20 +103,26 @@
           <div class="modal-body">
             <div class="form-horizontal">
               <div class="form-group">
+                <label for="inputName3" class="col-sm-2 control-label">Имя</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="inputName3" placeholder="Name">
+                </div>
+              </div>
+              <div class="form-group">
                 <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
                 <div class="col-sm-10">
                   <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
                 </div>
               </div>
               <div class="form-group">
-                <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
+                <label for="inputPassword3" class="col-sm-2 control-label">Пароль</label>
                 <div class="col-sm-10">
                   <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
                 </div>
               </div>
               <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
-                  <button type="submit" class="btn btn-default">Sign in</button>
+                  <button type="submit" class="btn btn-default">Зарегистрироваться</button>
                 </div>
               </div>
             </div>

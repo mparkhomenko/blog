@@ -18,7 +18,8 @@
   display: inline-block
 }
 
-.star-block {
+.star-block,
+.article-count {
   padding-bottom: 10px
 }
 
