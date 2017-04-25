@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
-    <title>Поиск блогов</title>
+    <title>Поиск статей</title>
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/css/main.css">
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -58,32 +58,46 @@
 
     <div class="container">
       <div class="row">
-        <div class="form-group">
-            <select class="form-control">
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
-              <option>4</option>
-              <option>5</option>
-            </select>
+        <div class="article col-lg-8 col-md-8 col-sm-6 col-xs-4">
+          <h2>UserName</h2>
+        </div>
+        <div class="article col-lg-8 col-md-8 col-sm-6 col-xs-4">
+          <h2><a href="article.php">Заголовок статьи</a></h2>
+          <h4>Темы: <small><a href="theme.php">theme1</a></small> <small><a href="theme.php">theme2</a></small> <small><a href="theme.php">theme3</a></small></h4>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          </p>
+          <div class="star-block">
+            <i class="fa fa-star-o"></i> <span class="star-count">100</span>
           </div>
-          <div class="form-group">
-            <select class="form-control" disabled>
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
-              <option>4</option>
-              <option>5</option>
-            </select>
+          <div class="comments-block">
+            <i class="fa fa-comments-o" aria-hidden="true"></i> <span class="comments-count">10</span>
           </div>
-          <div class="article col-lg-8 col-md-8 col-sm-6 col-xs-4">
-            <h2><a href="user.php">LinuxUser228</a></h2>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi aliquid unde beatae, tenetur eius qui debitis mollitia sequi consequuntur ipsam delectus quia nam pariatur fuga reprehenderit ullam ad provident esse.
-            </p>
-            <div class="article-count">
-              <i class="fa fa-file-text-o" aria-hidden="true"></i> <span>100</span>
-            </div>
+        </div>
+        <div class="article col-lg-8 col-md-8 col-sm-6 col-xs-4">
+          <h2><a href="article.php">Заголовок статьи</a></h2>
+          <h4>Темы: <small><a href="theme.php">theme1</a></small> <small><a href="theme.php">theme2</a></small> <small><a href="theme.php">theme3</a></small></h4>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          </p>
+          <div class="star-block">
+            <i class="fa fa-star-o"></i> <span class="star-count">100</span>
+          </div>
+          <div class="comments-block">
+            <i class="fa fa-comments-o" aria-hidden="true"></i> <span class="comments-count">10</span>
+          </div>
+        </div>
+        <div class="article col-lg-8 col-md-8 col-sm-6 col-xs-4">
+          <h2><a href="article.php">Заголовок статьи</a></h2>
+          <h4>Темы: <small><a href="theme.php">theme1</a></small> <small><a href="theme.php">theme2</a></small> <small><a href="theme.php">theme3</a></small></h4>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          </p>
+          <div class="star-block">
+            <i class="fa fa-star-o"></i> <span class="star-count">100</span>
+          </div>
+          <div class="comments-block">
+            <i class="fa fa-comments-o" aria-hidden="true"></i> <span class="comments-count">10</span>
           </div>
         </div>
         <!-- <ul class="pagination">

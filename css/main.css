@@ -2,7 +2,7 @@
   width: 20px
 }
 
-.row .article {
+.article {
   width: 100%;
   height: auto;
   background: #f5f5f5;
@@ -11,6 +11,10 @@
 
 .row .article h1 {
   color: #101010
+}
+
+.star-block {
+  cursor: pointer
 }
 
 .star-block,
@@ -25,4 +29,9 @@
 
 .comments-block {
   float: right
+}
+
+form textarea {
+  margin-bottom: 15px;
+  resize: none
 }

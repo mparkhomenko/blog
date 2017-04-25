@@ -69,8 +69,8 @@
           </div>
         </div>
         <div class="article col-lg-8 col-md-8 col-sm-6 col-xs-4">
-          <h2>Заголовок статьи</h2>
-          <h4>Темы: <small>theme1</small> <small>theme2</small> <small>theme3</small> <small>theme4</small></h4>
+          <h2><a href="article.php">Заголовок статьи</a></h2>
+          <h4>Темы: <small><a href="theme.php">theme1</a></small> <small><a href="theme.php">theme2</a></small> <small><a href="theme.php">theme3</a></small></h4>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
           </p>
