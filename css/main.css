@@ -35,3 +35,7 @@ form textarea {
   margin-bottom: 15px;
   resize: none
 }
+
+.email-check {
+  color: #9d9d9d;
+}

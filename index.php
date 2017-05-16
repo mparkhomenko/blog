@@ -38,17 +38,20 @@
                 <li><a href="blogs.php">Блоги</a></li>
                 <li><a href="search.php">Поиск</a></li>
               </ul>
-              <div class="navbar-form navbar-right">
+              <div class="form navbar-form navbar-right">
                 <div class="form-group">
-                  <input type="text" name="userEmail" placeholder="E-mail" value="" class="form-control">
+                  <input type="text" name="userEmail" placeholder="E-mail" value="" class="form-control uEmail">
                 </div>
                 <div class="form-group">
-                  <input type="password" name="userPass" placeholder="Password" value="" class="form-control">
+                  <input type="password" name="userPass" placeholder="Password" value="" class="form-control uPass">
                 </div>
-                <button type="submit" name="buttonLogin" class="btn btn-primary">
+                <button type="button" name="buttonLogin" class="btn btn-primary" id="btn-login">
                   <i class="fa fa-sign-in" aria-hidden="true"></i> Войти
                 </button>
-                <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#modal-1">Регистрация</button>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-1">Регистрация</button>
+              </div>
+              <div class="navbar-right">
+                <span class="email-check"></span>
               </div>
             </div>
           </div>
@@ -196,5 +199,7 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="md5.js" type="text/javascript"></script>
+    <script src="query.js" type="text/javascript"></script>
   </body>
 </html>
