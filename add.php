@@ -77,7 +77,10 @@ $themes = $db->loadArrayData("SELECT id_theme, theme FROM themes");
     <div class="container">
       <div class="row">
         <div class="form-horizontal">
-          <label for="text-article">Добавление статьи</label>
+          <label for="text-header">Заголовок статьи:</label>
+          <input type="text" id="text-header" name="header" class="form-control header">
+          <br>
+          <label for="text-article">Текст статьи:</label>
           <textarea class="form-control" id="text-article" rows="20"></textarea>
           <br>
           <select class="form-control" id="select-theme">

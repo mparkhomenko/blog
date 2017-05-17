@@ -7,6 +7,7 @@ $db = new db();
 $idArticle = $_GET["id"];
 
 $articles = $db->loadArrayData("SELECT id_article, article, id_theme, header FROM articles WHERE id_article = '$idArticle'");
+$comments = $db->loadArrayData("SELECT comment, id_article, id_user FROM comments WHERE id_article = '$idArticle'");
 
 ?>
 
@@ -77,6 +78,7 @@ $articles = $db->loadArrayData("SELECT id_article, article, id_theme, header FRO
         <div class="article col-lg-8 col-md-8 col-sm-6 col-xs-4">
           <?php for($i = 0; $i < count($articles); $i++):?>
             <h2><?= $articles[$i]["header"]; ?></h2>
+            <input type="hidden" class="hidden" value="<?= $_GET["id"]; ?>">
             <?php $theme = $articles[$i]["id_theme"]; $idTheme = $db->loadArrayData("SELECT theme FROM themes WHERE id_theme = '$theme'"); ?>
             <?php for ($j=0; $j < count($idTheme); $j++): ?>
                 <h4>Тема: <small><a href="theme.php"><?= $idTheme[$j]['theme']; ?></a></small></h4>
@@ -89,10 +91,11 @@ $articles = $db->loadArrayData("SELECT id_article, article, id_theme, header FRO
             </div>
           <? endfor; ?>
         </div>
-        <form action="" class="form-group">
-          <textarea class="form-control" rows="3" placeholder="Комментарий..."></textarea>
-          <button type="button" name="button" class="btn btn-primary">Отправить</button>
-        </form>
+        <div class="add-comment form-group">
+          <textarea class="form-control" rows="3" placeholder="Комментарий..." id="text-comment"></textarea>
+          <br>
+          <button type="button" name="button" class="btn btn-primary" id="add-comment-button">Отправить</button>
+        </div>
     </div>
     <div class="panel-group" id="collapse-group">
       <div class="panel panel-default">
@@ -103,30 +106,19 @@ $articles = $db->loadArrayData("SELECT id_article, article, id_theme, header FRO
         </div>
         <div id="el1" class="panel-collapse collapse">
           <div class="panel-body">
-            <div class="article col-lg-8 col-md-8 col-sm-6 col-xs-4">
-              <h3>
-                <a href="user.php">User</a>
-              </h3>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </div>
-            <div class="article col-lg-8 col-md-8 col-sm-6 col-xs-4">
-              <h3>
-                <a href="user.php">User</a>
-              </h3>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </div>
-            <div class="article col-lg-8 col-md-8 col-sm-6 col-xs-4">
-              <h3>
-                <a href="user.php">User</a>
-              </h3>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </div>
-            <div class="article col-lg-8 col-md-8 col-sm-6 col-xs-4">
-              <h3>
-                <a href="user.php">User</a>
-              </h3>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </div>
+            <?php for($i = 0; $i < count($comments); $i++):?>
+              <div class="article col-lg-8 col-md-8 col-sm-6 col-xs-4">
+                <h3>
+                  <?php $idUser = $comments[$i]["id_user"]; $user = $db->loadArrayData("SELECT name, id_user FROM users WHERE id_user = '$idUser'"); ?>
+                  <?php for ($j=0; $j < count($user); $j++): ?>
+                      <a href="user.php?id=<?= $idUser; ?>"><?= $user[$j]['name']; ?></a>
+                  <? endfor; ?>
+                </h3>
+                <p>
+                  <?= $comments[$i]["comment"]; ?>
+                </p>
+              </div>
+            <? endfor; ?>
           </div>
         </div>
       </div>

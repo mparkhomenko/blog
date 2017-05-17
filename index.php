@@ -4,7 +4,8 @@ include_once "/php/db/db.php";
 
 $db = new db();
 
-$articles = $db->loadArrayData("SELECT id_article, article, id_theme, header FROM articles");
+$articles = $db->loadArrayData("SELECT id_article, article, id_theme, id_user, header FROM articles");
+$likes = $db->loadArrayData("SELECT uLike FROM likes");
 
 ?>
 
@@ -73,7 +74,7 @@ $articles = $db->loadArrayData("SELECT id_article, article, id_theme, header FRO
     <div class="container">
       <div class="row">
         <?php for($i = 0; $i < count($articles); $i++):?>
-          <div class="article-index col-lg-8 col-md-8 col-sm-6 col-xs-4" id="<?= $articles[$i]["id_article"]; ?>">
+          <div class="article-index col-lg-8 col-md-8 col-sm-6 col-xs-4" data-id="<?= $articles[$i]["id_article"]; ?>">
             <h2><a href="article.php?id=<?= $articles[$i]["id_article"]; ?>"><?= $articles[$i]["header"]; ?></a></h2>
             <?php $theme = $articles[$i]["id_theme"]; $idTheme = $db->loadArrayData("SELECT theme FROM themes WHERE id_theme = '$theme'"); ?>
             <?php for ($j=0; $j < count($idTheme); $j++): ?>
@@ -82,23 +83,16 @@ $articles = $db->loadArrayData("SELECT id_article, article, id_theme, header FRO
             <p>
               <?= $articles[$i]["article"]; ?>
             </p>
-            <div class="star-block">
-              <i class="fa fa-star-o"></i> <span class="star-count">100</span>
+            <div class="star-block" data-article="<?= $articles[$i]["id_article"]; ?>" data-user="<?= $articles[$i]["id_user"]; ?>">
+              <?php $article = $articles[$i]["id_article"]; $likesCount = count($db->loadArrayData("SELECT uLike FROM likes WHERE id_article = '$article'")); ?>
+              <i class="fa fa-star-o"></i> <span class="star-count"><?= $likesCount; ?></span>
             </div>
             <div class="comments-block">
-              <i class="fa fa-comments-o" aria-hidden="true"></i> <span class="comments-count">10</span>
+              <?php $article = $articles[$i]["id_article"]; $commentsCount = count($db->loadArrayData("SELECT comment FROM comments WHERE id_article = '$article'")); ?>
+              <i class="fa fa-comments-o" aria-hidden="true"></i> <span class="comments-count"><?= $commentsCount; ?></span>
             </div>
           </div>
         <? endfor; ?>
-        <!-- <ul class="pagination">
-          <li class="disabled"><a href="#">«</a></li>
-          <li class="active"><a href="#">1</a></li>
-          <li><a href="#">2</a></li>
-          <li><a href="#">3</a></li>
-          <li><a href="#">4</a></li>
-          <li><a href="#">5</a></li>
-          <li><a href="#">»</a></li>
-        </ul> -->
       </div>
     </div>
 
@@ -131,7 +125,7 @@ $articles = $db->loadArrayData("SELECT id_article, article, id_theme, header FRO
               </div>
               <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
-                  <button type="submit" class="btn btn-default">Зарегистрироваться</button>
+                  <button type="button" class="btn btn-default" id="btn-reg">Зарегистрироваться</button>
                 </div>
               </div>
             </div>
