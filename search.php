@@ -37,6 +37,7 @@
               <ul class="nav navbar-nav">
                 <li><a href="blogs.php">Блоги</a></li>
                 <li><a href="search.php">Поиск</a></li>
+                <li><a href="add.php" class="add-article-link">Добавить статью</a></li>
               </ul>
               <div class="form navbar-form navbar-right">
                 <div class="form-group">
