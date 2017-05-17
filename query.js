@@ -49,8 +49,6 @@ $(document).ready(function() {
     var text = $("#text-article").val();
     var selind = document.getElementById("select-theme").options.selectedIndex;
     var theme = document.getElementById("select-theme").options[selind].value;
-    console.log(text);
-    console.log(theme);
 
     if (text != '' && theme != '') {
       $.ajax({
@@ -62,7 +60,6 @@ $(document).ready(function() {
           check: check
         },
         success: function(msg) {
-          console.log(msg);
           switch (msg) {
             case "1":
               alert("Всё ок!");
