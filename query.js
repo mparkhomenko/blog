@@ -167,15 +167,16 @@ $(document).ready(function() {
               idArticle: idArticle,
               idUser: idUser
             },
-            dataType: "json",
             success: function(msg) {
-                if (!msg.error) { //если на сервере не произойло ошибки то обновляем количество лайков на странице
-                  child.removeClass('fa-star-o');
-                  child.addClass('fa-star'); // помечаем лайк как "понравившийся"
-                  $('.star-count', link).html(msg.count);
-                } else {
-                  alert(msg.message);
-                }
+              console.log(msg);
+              switch (msg) {
+                case "1":
+                  $('.star-count', link).html(1);
+                  break;
+                case "2":
+                  alert('Что-то пошло не так...');
+                  break;
+              }
             }
         });
     });
