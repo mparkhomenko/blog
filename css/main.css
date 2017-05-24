@@ -50,3 +50,7 @@ form textarea {
 .add-article-link {
   display: none
 }
+
+h2 span {
+  color: #337ab7
+}

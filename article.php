@@ -6,7 +6,7 @@ $db = new db();
 
 $idArticle = $_GET["id"];
 
-$articles = $db->loadArrayData("SELECT id_article, article, id_theme, header FROM articles WHERE id_article = '$idArticle'");
+$articles = $db->loadArrayData("SELECT id_article, article, id_theme, header FROM articles WHERE id_article = '$idArticle' ORDER BY id_article DESC");
 $comments = $db->loadArrayData("SELECT comment, id_article, id_user FROM comments WHERE id_article = '$idArticle'");
 
 ?>
@@ -79,9 +79,9 @@ $comments = $db->loadArrayData("SELECT comment, id_article, id_user FROM comment
           <?php for($i = 0; $i < count($articles); $i++):?>
             <h2><?= $articles[$i]["header"]; ?></h2>
             <input type="hidden" class="hidden" value="<?= $_GET["id"]; ?>">
-            <?php $theme = $articles[$i]["id_theme"]; $idTheme = $db->loadArrayData("SELECT theme FROM themes WHERE id_theme = '$theme'"); ?>
+            <?php $theme = $articles[$i]["id_theme"]; $idTheme = $db->loadArrayData("SELECT id_theme, theme FROM themes WHERE id_theme = '$theme'"); ?>
             <?php for ($j=0; $j < count($idTheme); $j++): ?>
-                <h4>Тема: <small><a href="theme.php"><?= $idTheme[$j]['theme']; ?></a></small></h4>
+                <h4>Тема: <small><a href="theme.php?id=<?= $idTheme[$j]['id_theme']; ?>"><?= $idTheme[$j]['theme']; ?></a></small></h4>
             <? endfor; ?>
             <p>
               <?= $articles[$i]["article"]; ?>

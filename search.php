@@ -64,7 +64,7 @@
       <div class="row">
         <div class="form-group">
           <div class="input-group">
-            <input type="text" class="form-control" placeholder="Введите слово для поиска...">
+            <input type="text" class="form-control" placeholder="Введите слово для поиска статьи...">
             <span class="input-group-btn">
               <button class="btn btn-primary" type="button">
                 <i class="fa fa-search" aria-hidden="true"></i> Найти

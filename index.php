@@ -4,7 +4,7 @@ include_once "/php/db/db.php";
 
 $db = new db();
 
-$articles = $db->loadArrayData("SELECT id_article, article, id_theme, id_user, header FROM articles");
+$articles = $db->loadArrayData("SELECT id_article, article, id_theme, id_user, header FROM articles ORDER BY id_article DESC");
 $likes = $db->loadArrayData("SELECT uLike FROM likes");
 
 ?>
@@ -76,9 +76,9 @@ $likes = $db->loadArrayData("SELECT uLike FROM likes");
         <?php for($i = 0; $i < count($articles); $i++):?>
           <div class="article-index col-lg-8 col-md-8 col-sm-6 col-xs-4" data-id="<?= $articles[$i]["id_article"]; ?>">
             <h2><a href="article.php?id=<?= $articles[$i]["id_article"]; ?>"><?= $articles[$i]["header"]; ?></a></h2>
-            <?php $theme = $articles[$i]["id_theme"]; $idTheme = $db->loadArrayData("SELECT theme FROM themes WHERE id_theme = '$theme'"); ?>
+            <?php $theme = $articles[$i]["id_theme"]; $idTheme = $db->loadArrayData("SELECT id_theme, theme FROM themes WHERE id_theme = '$theme'"); ?>
             <?php for ($j=0; $j < count($idTheme); $j++): ?>
-                <h4>Тема: <small><a href="theme.php"><?= $idTheme[$j]['theme']; ?></a></small></h4>
+                <h4>Тема: <small><a href="theme.php?id=<?= $idTheme[$j]['id_theme']; ?>"><?= $idTheme[$j]['theme']; ?></a></small></h4>
             <? endfor; ?>
             <p>
               <?= $articles[$i]["article"]; ?>
