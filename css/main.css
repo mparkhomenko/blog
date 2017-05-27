@@ -24,12 +24,19 @@
   color: #101010
 }
 
-.star-block {
+.star-block,
+.fav-block {
   cursor: pointer
 }
 
+.star-block:hover,
+.fav-block:hover {
+  color: #337ab7
+}
+
 .star-block,
-.comments-block {
+.comments-block,
+.fav-block {
   display: inline-block
 }
 
@@ -62,4 +69,16 @@ h2 span {
 .danger {
   text-align: center;
   padding: 5px;
+}
+
+.fav-block {
+  margin-left: 20px
+}
+
+/*.clone {
+  display: none
+}*/
+
+#header-clone-0 {
+  display: none
 }

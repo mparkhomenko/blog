@@ -4,9 +4,11 @@ include_once "/php/db/db.php";
 
 $db = new db();
 
+$res = $db->loadArrayData("SELECT COUNT(*) as num FROM articles");
+
 include_once "/php/pagination.php";
 
-// $articles = $db->loadArrayData("SELECT id_article, article, id_theme, id_user, header FROM articles ORDER BY id_article DESC");
+$articles = $db->loadArrayData("SELECT * FROM articles ORDER BY id_article DESC LIMIT $art, $kol");
 $likes = $db->loadArrayData("SELECT uLike FROM likes");
 
 ?>
@@ -89,11 +91,14 @@ $likes = $db->loadArrayData("SELECT uLike FROM likes");
             </p>
             <div class="star-block" data-article="<?= $articles[$i]["id_article"]; ?>" data-user="<?= $articles[$i]["id_user"]; ?>">
               <?php $article = $articles[$i]["id_article"]; $likesCount = count($db->loadArrayData("SELECT uLike FROM likes WHERE id_article = '$article'")); ?>
-              <i class="fa fa-star-o"></i> <span class="star-count"><?= $likesCount; ?></span>
+              <i class="fa fa-star-o"></i> <span class="star-count">Лайк <?= $likesCount; ?></span>
+            </div>
+            <div class="fav-block">
+              <i class="fa fa-plus-square-o" aria-hidden="true"></i> <span>В избранное</span>
             </div>
             <div class="comments-block">
               <?php $article = $articles[$i]["id_article"]; $commentsCount = count($db->loadArrayData("SELECT comment FROM comments WHERE id_article = '$article'")); ?>
-              <i class="fa fa-comments-o" aria-hidden="true"></i> <span class="comments-count"><?= $commentsCount; ?></span>
+              <i class="fa fa-comments-o" aria-hidden="true"></i> <span class="comments-count">Комментарии <?= $commentsCount; ?></span>
             </div>
           </div>
         <? endfor; ?>

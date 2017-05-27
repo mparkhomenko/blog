@@ -4,6 +4,10 @@ include_once "/php/db/db.php";
 
 $db = new db();
 
+$res = $db->loadArrayData("SELECT COUNT(*) as num FROM articles WHERE id_theme = '$themeId' ORDER BY id_article DESC");
+
+include_once "/php/pagination.php";
+
 $themeId = $_GET['id'];
 $themeName = $db->loadArrayData("SELECT theme FROM themes WHERE id_theme = '$themeId'");
 
@@ -101,6 +105,16 @@ $likes = $db->loadArrayData("SELECT uLike FROM likes");
             </div>
           </div>
         <? endfor; ?>
+
+        <div class="pagination">
+          <nav aria-label="...">
+            <ul class="pagination pagination-sm">
+              <?php for ($i = 1; $i <= $str_pag; $i++): ?>
+                <li class="page-item"><?= "<a href=index.php?page=".$i.">".$i."</a>" ?></li>
+              <?php endfor; ?>
+            </ul>
+          </nav>
+        </div>
       </div>
     </div>
 

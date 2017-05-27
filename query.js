@@ -193,4 +193,48 @@ $(document).ready(function() {
       alert('Нельзя ставить лайк незарегестрировавшись!');
     }
   });
+
+  $("#search-btn").on("click", function () {
+    var text = $("#text-search").val();
+    if(text != '') {
+      $.ajax({
+        type: "POST",
+        url: "/php/searchScript.php",
+        data: {
+          text: text
+        },
+        success: function(msg) {
+          if (msg == "2") {
+            alert('Ничего не найдено!');
+          } else {
+            var result = $.parseJSON(msg);
+            var resultLength = result.length;
+            var id = 0;
+            var header = '';
+            var article = '';
+            var theme = '';
+            $('div.clone:not(#header-clone-0)').remove();
+            for (var i = 0; i < resultLength; i++) {
+              $('#header-clone-0').clone().attr('id', 'header-clone-' + (i + 1)).insertAfter('#header-clone-' + i);
+              var s = $('#header-clone-' + (i + 1));
+              console.log(s);
+              id = result[i]['id_article'];
+              header = result[i]['header'];
+              article = result[i]['article'];
+              s.find('h2 .header-article').html(header).attr('href', 'article.php?id=' + id);
+              s.find('.article-text').html(article);
+              s.find('.article-text').html(article);
+              $('#header-clone-0').css('display', 'none');
+              $('.clone').css('display', 'block');
+              console.log(header);
+              console.log(id);
+            }
+          }
+        }
+      });
+    } else {
+        alert("Поле поиска пустое.");
+        return false;
+      }
+  });
 });

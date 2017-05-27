@@ -66,36 +66,20 @@
       <div class="row">
         <div class="form-group">
           <div class="input-group">
-            <input type="text" class="form-control" placeholder="Введите слово для поиска статьи...">
+            <input type="text" class="form-control" id="text-search" placeholder="Введите слово для поиска статьи...">
             <span class="input-group-btn">
-              <button class="btn btn-primary" type="button">
+              <button class="btn btn-primary" id="search-btn" type="button">
                 <i class="fa fa-search" aria-hidden="true"></i> Найти
               </button>
             </span>
           </div>
         </div>
-        <div class="article col-lg-8 col-md-8 col-sm-6 col-xs-4">
-          <h2><a href="article.php">Заголовок статьи</a></h2>
-          <h4>Темы: <small><a href="theme.php">theme1</a></small> <small><a href="theme.php">theme2</a></small> <small><a href="theme.php">theme3</a></small></h4>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-          </p>
-          <div class="star-block">
-            <i class="fa fa-star-o"></i> <span class="star-count">100</span>
-          </div>
-          <div class="comments-block">
-            <i class="fa fa-comments-o" aria-hidden="true"></i> <span class="comments-count">10</span>
-          </div>
+        <div class="clone article col-lg-8 col-md-8 col-sm-6 col-xs-4" id="header-clone-0">
+          <h2>
+            <a href="" class="header-article"></a>
+          </h2>
+          <p class="article-text"></p>
         </div>
-        <!-- <ul class="pagination">
-          <li class="disabled"><a href="#">«</a></li>
-          <li class="active"><a href="#">1</a></li>
-          <li><a href="#">2</a></li>
-          <li><a href="#">3</a></li>
-          <li><a href="#">4</a></li>
-          <li><a href="#">5</a></li>
-          <li><a href="#">»</a></li>
-        </ul> -->
       </div>
     </div>
 
