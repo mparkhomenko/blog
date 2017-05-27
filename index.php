@@ -4,7 +4,9 @@ include_once "/php/db/db.php";
 
 $db = new db();
 
-$articles = $db->loadArrayData("SELECT id_article, article, id_theme, id_user, header FROM articles ORDER BY id_article DESC");
+include_once "/php/pagination.php";
+
+// $articles = $db->loadArrayData("SELECT id_article, article, id_theme, id_user, header FROM articles ORDER BY id_article DESC");
 $likes = $db->loadArrayData("SELECT uLike FROM likes");
 
 ?>
@@ -49,6 +51,8 @@ $likes = $db->loadArrayData("SELECT uLike FROM likes");
                 <li><a href="blogs.php">Блоги</a></li>
                 <li><a href="search.php">Поиск</a></li>
                 <li><a href="add.php" class="add-article-link">Добавить статью</a></li>
+                <li><a href="add.php" class="my-article-link">Мои статьи</a></li>
+                <li><a href="favourites.php" class="my-favourites-link">Избранное</a></li>
               </ul>
               <div class="form navbar-form navbar-right">
                 <div class="form-group">
@@ -93,6 +97,16 @@ $likes = $db->loadArrayData("SELECT uLike FROM likes");
             </div>
           </div>
         <? endfor; ?>
+
+        <div class="pagination">
+          <nav aria-label="...">
+            <ul class="pagination pagination-sm">
+              <?php for ($i = 1; $i <= $str_pag; $i++): ?>
+                <li class="page-item"><?= "<a href=index.php?page=".$i.">".$i."</a>" ?></li>
+              <?php endfor; ?>
+            </ul>
+          </nav>
+        </div>
       </div>
     </div>
 

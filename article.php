@@ -51,6 +51,8 @@ $comments = $db->loadArrayData("SELECT comment, id_article, id_user FROM comment
                 <li><a href="blogs.php">Блоги</a></li>
                 <li><a href="search.php">Поиск</a></li>
                 <li><a href="add.php" class="add-article-link">Добавить статью</a></li>
+                <li><a href="add.php" class="my-article-link">Мои статьи</a></li>
+                <li><a href="favourites.php" class="my-favourites-link">Избранное</a></li>
               </ul>
               <div class="form navbar-form navbar-right">
                 <div class="form-group">
@@ -86,8 +88,9 @@ $comments = $db->loadArrayData("SELECT comment, id_article, id_user FROM comment
             <p>
               <?= $articles[$i]["article"]; ?>
             </p>
-            <div class="star-block">
-              <i class="fa fa-star-o"></i> <span class="star-count">100</span>
+            <div class="star-block" data-article="<?= $articles[$i]["id_article"]; ?>" data-user="<?= $articles[$i]["id_user"]; ?>">
+              <?php $article = $articles[$i]["id_article"]; $likesCount = count($db->loadArrayData("SELECT uLike FROM likes WHERE id_article = '$article'")); ?>
+              <i class="fa fa-star-o"></i> <span class="star-count"><?= $likesCount; ?></span>
             </div>
           <? endfor; ?>
         </div>
@@ -97,6 +100,9 @@ $comments = $db->loadArrayData("SELECT comment, id_article, id_user FROM comment
           <button type="button" name="button" class="btn btn-primary" id="add-comment-button">Отправить</button>
         </div>
     </div>
+    <p class="bg-danger danger">
+      Комментарии могут оставлять только зарегестрированные пользователи
+    </p>
     <div class="panel-group" id="collapse-group">
       <div class="panel panel-default">
         <div class="panel-heading">

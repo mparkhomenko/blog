@@ -1,14 +1,23 @@
 $(document).ready(function() {
   var check = localStorage.getItem("Email");
+  console.log(check);
   if (check) {
     $(".form").css("display", "none");
     $(".add-article-link").css("display", "block");
+    $(".my-article-link").css("display", "block");
+    $(".my-favourites-link").css("display", "block");
+    $(".add-comment").css("display", "block");
+    $(".danger").css("display", "none");
     $(".email-check").html(check);
   }
   else {
     $(".form").css("display", "block");
     $(".email-check").css("display", "none");
     $(".add-article-link").css("display", "none");
+    $(".my-article-link").css("display", "none");
+    $(".my-favourites-link").css("display", "none");
+    $(".add-comment").css("display", "none");
+    $(".danger").css("display", "block");
   }
 
   $("#btn-reg").on("click", function() {
@@ -153,31 +162,35 @@ $(document).ready(function() {
   });
 
   $(".star-block").bind("click", function() {
-        var link = $(this);
-        var idArticle = link.data('article');
-        var idUser = link.data('user');
-        console.log(idUser);
-        console.log(idArticle);
-        console.log(link.find('i'));
-        var child = link.find('i');
-        $.ajax({
-            url: "/php/like.php",
-            type: "POST",
-            data: {
-              idArticle: idArticle,
-              idUser: idUser
-            },
-            success: function(msg) {
-              console.log(msg);
-              switch (msg) {
-                case "1":
-                  $('.star-count', link).html(1);
-                  break;
-                case "2":
-                  alert('Что-то пошло не так...');
-                  break;
-              }
+    if (check) {
+      var link = $(this);
+      var idArticle = link.data('article');
+      // var idUser = link.data('user');
+      // console.log(idUser);
+      console.log(idArticle);
+      // console.log(link.find('i'));
+      var child = link.find('i');
+      $.ajax({
+          url: "/php/like.php",
+          type: "POST",
+          data: {
+            idArticle: idArticle,
+            check: check
+          },
+          success: function(msg) {
+            console.log(msg);
+            switch (msg) {
+              case "1":
+                $('.star-count', link).html(1);
+                break;
+              case "2":
+                alert('Что-то пошло не так...');
+                break;
             }
-        });
-    });
+          }
+      });
+    } else {
+      alert('Нельзя ставить лайк незарегестрировавшись!');
+    }
+  });
 });

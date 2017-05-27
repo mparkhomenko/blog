@@ -52,6 +52,8 @@ $likes = $db->loadArrayData("SELECT uLike FROM likes");
                 <li><a href="blogs.php">Блоги</a></li>
                 <li><a href="search.php">Поиск</a></li>
                 <li><a href="add.php" class="add-article-link">Добавить статью</a></li>
+                <li><a href="add.php" class="my-article-link">Мои статьи</a></li>
+                <li><a href="favourites.php" class="my-favourites-link">Избранное</a></li>
               </ul>
               <div class="form navbar-form navbar-right">
                 <div class="form-group">
@@ -77,7 +79,7 @@ $likes = $db->loadArrayData("SELECT uLike FROM likes");
     <div class="container">
       <div class="row">
         <div class="article col-lg-8 col-md-8 col-sm-6 col-xs-4">
-          <h2><?= $themeName[0]['theme']; ?></h2>
+          <h2>Статьи по теме <span><?= $themeName[0]['theme']; ?></span></h2>
         </div>
         <?php for($i = 0; $i < count($articles); $i++):?>
           <div class="article-index col-lg-8 col-md-8 col-sm-6 col-xs-4" data-id="<?= $articles[$i]["id_article"]; ?>">

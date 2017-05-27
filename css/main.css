@@ -10,6 +10,10 @@
   margin-bottom: 20px
 }
 
+.article-index:last-child {
+  margin-bottom: 0
+}
+
 .article-index p {
   overflow: hidden;
   text-overflow: ellipsis;
@@ -53,4 +57,9 @@ form textarea {
 
 h2 span {
   color: #337ab7
+}
+
+.danger {
+  text-align: center;
+  padding: 5px;
 }
