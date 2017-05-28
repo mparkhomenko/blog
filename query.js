@@ -1,6 +1,5 @@
 $(document).ready(function() {
   var check = localStorage.getItem("Email");
-  console.log(check);
   if (check) {
     $(".form").css("display", "none");
     $(".add-article-link").css("display", "block");
@@ -73,6 +72,7 @@ $(document).ready(function() {
           switch (msg) {
             case "1":
               localStorage.setItem("Email",email);
+              document.cookie = "Email=" + email + "";
               $(".form").css("display", "none");
               $(".add-article-link").css("display", "block");
               alert("Всё ок!");

@@ -4,8 +4,11 @@ include_once "/php/db/db.php";
 
 $db = new db();
 
+include_once "/php/usersArticle.php";
+
 $userId = $_GET['id'];
 $userName = $db->loadArrayData("SELECT name FROM users WHERE id_user = '$userId'");
+$countArt = $res[0]['num'];
 
 $articles = $db->loadArrayData("SELECT id_article, article, id_theme, id_user, header FROM articles WHERE id_user = '$userId' ORDER BY id_article DESC");
 $likes = $db->loadArrayData("SELECT uLike FROM likes");
@@ -52,7 +55,7 @@ $likes = $db->loadArrayData("SELECT uLike FROM likes");
                 <li><a href="blogs.php">Блоги</a></li>
                 <li><a href="search.php">Поиск</a></li>
                 <li><a href="add.php" class="add-article-link">Добавить статью</a></li>
-                <li><a href="myArticles.php" class="my-article-link">Мои статьи</a></li>
+                <li><a href="myArticles.php" class="my-article-link">Мои статьи <span class="badge"><?= $countArt; ?></span></a></li>
               </ul>
               <div class="form navbar-form navbar-right">
                 <div class="form-group">

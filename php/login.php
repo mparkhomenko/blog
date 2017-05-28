@@ -1,7 +1,5 @@
 <?php
 
-session_start();
-
 include_once 'db/db.php';
 
 $db = new db();
@@ -11,7 +9,7 @@ $pass = $_POST['passHex'];
 
 if(count($db->loadArrayData("SELECT email, password FROM users WHERE (email = '{$email}') AND (password = '{$pass}')")))
 {
-  $_SESSION['Email'] = $email;
+  setcookie("email", $email);
   echo 1;
 }
 else {
