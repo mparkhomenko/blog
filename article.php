@@ -51,7 +51,7 @@ $comments = $db->loadArrayData("SELECT comment, id_article, id_user FROM comment
                 <li><a href="blogs.php">Блоги</a></li>
                 <li><a href="search.php">Поиск</a></li>
                 <li><a href="add.php" class="add-article-link">Добавить статью</a></li>
-                <li><a href="add.php" class="my-article-link">Мои статьи</a></li>
+                <li><a href="myArticles.php" class="my-article-link">Мои статьи</a></li>
                 <li><a href="favourites.php" class="my-favourites-link">Избранное</a></li>
               </ul>
               <div class="form navbar-form navbar-right">

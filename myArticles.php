@@ -1,13 +1,22 @@
 <?php
 
+session_start();
+
 include_once "/php/db/db.php";
 
 $db = new db();
 
-$userId = $_GET['id'];
-$userName = $db->loadArrayData("SELECT name FROM users WHERE id_user = '$userId'");
+$emailUser = $_SESSION['Email'];
 
-$articles = $db->loadArrayData("SELECT id_article, article, id_theme, id_user, header FROM articles WHERE id_user = '$userId' ORDER BY id_article DESC");
+$result = $db->loadArrayData("SELECT id_user FROM users WHERE email = '$emailUser'");
+
+$idUser = $result[0]['id_user'];
+
+$res = $db->loadArrayData("SELECT COUNT(*) as num FROM articles WHERE id_user = '$idUser'");
+
+include_once "/php/pagination.php";
+
+$articles = $db->loadArrayData("SELECT * FROM articles WHERE id_user = '$idUser' ORDER BY id_article DESC LIMIT $art, $kol");
 $likes = $db->loadArrayData("SELECT uLike FROM likes");
 
 ?>
@@ -20,7 +29,7 @@ $likes = $db->loadArrayData("SELECT uLike FROM likes");
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
-    <title>Поиск статей</title>
+    <title>Linux blog</title>
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/css/main.css">
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -52,7 +61,8 @@ $likes = $db->loadArrayData("SELECT uLike FROM likes");
                 <li><a href="blogs.php">Блоги</a></li>
                 <li><a href="search.php">Поиск</a></li>
                 <li><a href="add.php" class="add-article-link">Добавить статью</a></li>
-                <li><a href="myArticles.php" class="my-article-link">Мои статьи</a></li>
+                <li><a href="add.php" class="my-article-link">Мои статьи</a></li>
+                <li><a href="favourites.php" class="my-favourites-link">Избранное</a></li>
               </ul>
               <div class="form navbar-form navbar-right">
                 <div class="form-group">
@@ -77,9 +87,6 @@ $likes = $db->loadArrayData("SELECT uLike FROM likes");
 
     <div class="container">
       <div class="row">
-        <div class="article col-lg-8 col-md-8 col-sm-6 col-xs-4">
-          <h2>Статьи пользователя <span><?= $userName[0]['name']; ?></span></h2>
-        </div>
         <?php for($i = 0; $i < count($articles); $i++):?>
           <div class="article-index col-lg-8 col-md-8 col-sm-6 col-xs-4" data-id="<?= $articles[$i]["id_article"]; ?>">
             <h2><a href="article.php?id=<?= $articles[$i]["id_article"]; ?>"><?= $articles[$i]["header"]; ?></a></h2>
@@ -92,61 +99,33 @@ $likes = $db->loadArrayData("SELECT uLike FROM likes");
             </p>
             <div class="star-block" data-article="<?= $articles[$i]["id_article"]; ?>" data-user="<?= $articles[$i]["id_user"]; ?>">
               <?php $article = $articles[$i]["id_article"]; $likesCount = count($db->loadArrayData("SELECT uLike FROM likes WHERE id_article = '$article'")); ?>
-              <i class="fa fa-star-o"></i> <span class="star-count"><?= $likesCount; ?></span>
+              <i class="fa fa-star-o"></i> <span class="star-count">Лайк <?= $likesCount; ?></span>
+            </div>
+            <div class="fav-block">
+              <i class="fa fa-plus-square-o" aria-hidden="true"></i> <span>В избранное</span>
             </div>
             <div class="comments-block">
               <?php $article = $articles[$i]["id_article"]; $commentsCount = count($db->loadArrayData("SELECT comment FROM comments WHERE id_article = '$article'")); ?>
-              <i class="fa fa-comments-o" aria-hidden="true"></i> <span class="comments-count"><?= $commentsCount; ?></span>
+              <i class="fa fa-comments-o" aria-hidden="true"></i> <span class="comments-count">Комментарии <?= $commentsCount; ?></span>
             </div>
           </div>
         <? endfor; ?>
-      </div>
-    </div>
 
-    <div class="modal fade" id="modal-1">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title">Регистрация</h4>
-          </div>
-          <div class="modal-body">
-            <div class="form-horizontal">
-              <div class="form-group">
-                <label for="inputName3" class="col-sm-2 control-label">Имя</label>
-                <div class="col-sm-10">
-                  <input type="text" class="form-control" id="inputName3" placeholder="Name">
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
-                <div class="col-sm-10">
-                  <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="inputPassword3" class="col-sm-2 control-label">Пароль</label>
-                <div class="col-sm-10">
-                  <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
-                </div>
-              </div>
-              <div class="form-group">
-                <div class="col-sm-offset-2 col-sm-10">
-                  <button type="submit" class="btn btn-default">Зарегистрироваться</button>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button class="btn btn-danger" type="button" data-dismiss="modal">Закрыть</button>
-          </div>
+        <div class="pagination">
+          <nav aria-label="...">
+            <ul class="pagination pagination-sm">
+              <?php for ($i = 1; $i <= $str_pag; $i++): ?>
+                <li class="page-item"><?= "<a href=index.php?page=".$i.">".$i."</a>" ?></li>
+              <?php endfor; ?>
+            </ul>
+          </nav>
         </div>
       </div>
     </div>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="bootstrap/js/bootstrap.min.js"></script>
-    <script src="md5.js" type="text/javascript"></script>
-    <script src="query.js" type="text/javascript"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="bootstrap/js/bootstrap.min.js"></script>
+  <script src="md5.js" type="text/javascript"></script>
+  <script src="query.js" type="text/javascript"></script>
   </body>
 </html>

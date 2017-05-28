@@ -69,6 +69,7 @@ $(document).ready(function() {
           passHex: passHex
         },
         success: function(msg) {
+          console.log(msg);
           switch (msg) {
             case "1":
               localStorage.setItem("Email",email);
