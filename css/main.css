@@ -14,7 +14,8 @@
   margin-bottom: 0
 }
 
-.article-index p {
+.article-index p,
+.article-text {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap

@@ -97,6 +97,12 @@ $likes = $db->loadArrayData("SELECT uLike FROM likes");
             <div class="fav-block">
               <i class="fa fa-plus-square-o" aria-hidden="true"></i> <span>В избранное</span>
             </div>
+            <div class="fav-block delete-article" data-id="<?= $articlesUsers[$i]["id_article"]; ?>">
+              <i class="fa fa-minus-square-o" aria-hidden="true"></i> <span>Удалить</span>
+            </div>
+            <div class="fav-block get-article" data-id="<?= $articlesUsers[$i]["id_article"]; ?>" data-toggle="modal" data-target="#modal-2">
+              <i class="fa fa-pencil-square-o" aria-hidden="true"></i> <span>Изменить</span>
+            </div>
             <div class="comments-block">
               <?php $article = $articlesUsers[$i]["id_article"]; $commentsCount = count($db->loadArrayData("SELECT comment FROM comments WHERE id_article = '$article'")); ?>
               <i class="fa fa-comments-o" aria-hidden="true"></i> <span class="comments-count">Комментарии <?= $commentsCount; ?></span>
@@ -112,6 +118,32 @@ $likes = $db->loadArrayData("SELECT uLike FROM likes");
               <?php endfor; ?>
             </ul>
           </nav>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="modal-2">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Редактирование статьи</h4>
+          </div>
+          <div class="modal-body">
+            <div class="form-horizontal">
+              <label for="text-header">Заголовок статьи:</label>
+              <input type="text" id="text-header-change" name="header" class="form-control header">
+              <br>
+              <label for="text-article">Текст статьи:</label>
+              <textarea class="form-control" id="text-article-change" rows="20"></textarea>
+              <br>
+              <button type="button" class="btn btn-primary" id="change-btn">Сохранить</button>
+              <input type="hidden" id="id-article-change" value="">
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-danger" type="button" data-dismiss="modal">Закрыть</button>
+          </div>
         </div>
       </div>
     </div>

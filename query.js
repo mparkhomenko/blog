@@ -182,7 +182,7 @@ $(document).ready(function() {
             console.log(msg);
             switch (msg) {
               case "1":
-                $('.star-count', link).html(1);
+                $('.star-count', link).html("Лайк " + 1);
                 break;
               case "2":
                 alert('Что-то пошло не так...');
@@ -237,5 +237,82 @@ $(document).ready(function() {
         alert("Поле поиска пустое.");
         return false;
       }
+  });
+
+  $(".delete-article").on("click", function () {
+    var link = $(this);
+    var idArticle = link.data('id');
+    console.log(idArticle);
+    $.ajax({
+      type: "POST",
+      url: "/php/deleteArticle.php",
+      data: {
+        idArticle: idArticle
+      },
+      success: function(msg) {
+        switch (msg) {
+          case "1":
+            alert("Запись успешно удалена!");
+            location.reload();
+            break;
+          case "2":
+            alert("Ошибка, попробуйте ещё раз!");
+            break;
+          default:
+            alert("404");
+        }
+      }
+    });
+  });
+
+  $(".get-article").on("click", function () {
+    var link = $(this);
+    var idArticle = link.data('id');
+    console.log(idArticle);
+    $.ajax({
+      type: "POST",
+      url: "/php/getArticle.php",
+      data: {
+        idArticle: idArticle
+      },
+      success: function(msg) {
+        var result = $.parseJSON(msg);
+        console.log(result[0]);
+        $('#text-header-change').val(result[0]['header']);
+        $('#text-article-change').html(result[0]['article']);
+        $('#id-article-change').val(result[0]['id_article']);
+      }
+    });
+  });
+
+  $("#change-btn").on("click", function () {
+    var idArticle = $('#id-article-change').val();
+    var textHeader = $('#text-header-change').val();
+    var textArticle = $('#text-article-change').html();
+    console.log(idArticle);
+    console.log(textHeader);
+    console.log(textArticle);
+    $.ajax({
+      type: "POST",
+      url: "/php/changeArticle.php",
+      data: {
+        idArticle: idArticle,
+        textHeader: textHeader,
+        textArticle: textArticle
+      },
+      success: function(msg) {
+        switch (msg) {
+          case "1":
+            alert("Запись успешно изменена!");
+            location.reload();
+            break;
+          case "2":
+            alert("Ошибка, попробуйте ещё раз!");
+            break;
+          default:
+            alert("404");
+        }
+      }
+    });
   });
 });
