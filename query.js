@@ -7,6 +7,7 @@ $(document).ready(function() {
     $(".my-favourites-link").css("display", "block");
     $(".add-comment").css("display", "block");
     $(".danger").css("display", "none");
+    $(".add-to-favourites").css('display', 'inline-block');
     $(".email-check").html(check);
   }
   else {
@@ -17,6 +18,7 @@ $(document).ready(function() {
     $(".my-favourites-link").css("display", "none");
     $(".add-comment").css("display", "none");
     $(".danger").css("display", "block");
+    $(".add-to-favourites").css('display', 'none');
   }
 
   $("#btn-reg").on("click", function() {
@@ -218,7 +220,6 @@ $(document).ready(function() {
             for (var i = 0; i < resultLength; i++) {
               $('#header-clone-0').clone().attr('id', 'header-clone-' + (i + 1)).insertAfter('#header-clone-' + i);
               var s = $('#header-clone-' + (i + 1));
-              console.log(s);
               id = result[i]['id_article'];
               header = result[i]['header'];
               article = result[i]['article'];
@@ -227,8 +228,6 @@ $(document).ready(function() {
               s.find('.article-text').html(article);
               $('#header-clone-0').css('display', 'none');
               $('.clone').css('display', 'block');
-              console.log(header);
-              console.log(id);
             }
           }
         }
@@ -242,7 +241,6 @@ $(document).ready(function() {
   $(".delete-article").on("click", function () {
     var link = $(this);
     var idArticle = link.data('id');
-    console.log(idArticle);
     $.ajax({
       type: "POST",
       url: "/php/deleteArticle.php",
@@ -268,7 +266,6 @@ $(document).ready(function() {
   $(".get-article").on("click", function () {
     var link = $(this);
     var idArticle = link.data('id');
-    console.log(idArticle);
     $.ajax({
       type: "POST",
       url: "/php/getArticle.php",
@@ -277,7 +274,6 @@ $(document).ready(function() {
       },
       success: function(msg) {
         var result = $.parseJSON(msg);
-        console.log(result[0]);
         $('#text-header-change').val(result[0]['header']);
         $('#text-article-change').html(result[0]['article']);
         $('#id-article-change').val(result[0]['id_article']);
@@ -289,9 +285,6 @@ $(document).ready(function() {
     var idArticle = $('#id-article-change').val();
     var textHeader = $('#text-header-change').val();
     var textArticle = $('#text-article-change').html();
-    console.log(idArticle);
-    console.log(textHeader);
-    console.log(textArticle);
     $.ajax({
       type: "POST",
       url: "/php/changeArticle.php",
@@ -304,6 +297,62 @@ $(document).ready(function() {
         switch (msg) {
           case "1":
             alert("Запись успешно изменена!");
+            location.reload();
+            break;
+          case "2":
+            alert("Ошибка, попробуйте ещё раз!");
+            break;
+          default:
+            alert("404");
+        }
+      }
+    });
+  });
+
+  $(".add-to-favourites").on("click", function () {
+    var link = $(this);
+    var idArticle = link.data('id');
+    var idUser = link.data('user');
+    console.log(idArticle);
+    console.log(idUser);
+    $.ajax({
+      type: "POST",
+      url: "/php/addFavourites.php",
+      data: {
+        idArticle: idArticle,
+        idUser: idUser
+      },
+      success: function(msg) {
+        console.log(msg);
+        switch (msg) {
+          case "1":
+            alert("Запись успешно добавлена в избранное!");
+            break;
+          case "2":
+            alert("Видимо, запись уже в избранном.");
+            break;
+          default:
+            alert("404");
+        }
+      }
+    });
+  });
+
+  $(".delete-favourite").on("click", function () {
+    var link = $(this);
+    var idArticle = link.data('id');
+    console.log(idArticle);
+    $.ajax({
+      type: "POST",
+      url: "/php/deleteFavourites.php",
+      data: {
+        idArticle: idArticle
+      },
+      success: function(msg) {
+        console.log(msg);
+        switch (msg) {
+          case "1":
+            alert("Запись успешно удалена из избранного!");
             location.reload();
             break;
           case "2":
