@@ -99,7 +99,10 @@ $likes = $db->loadArrayData("SELECT uLike FROM likes");
             </p>
             <div class="star-block" data-article="<?= $articles[$i]["id_article"]; ?>" data-user="<?= $articles[$i]["id_user"]; ?>">
               <?php $article = $articles[$i]["id_article"]; $likesCount = count($db->loadArrayData("SELECT uLike FROM likes WHERE id_article = '$article'")); ?>
-              <i class="fa fa-star-o"></i> <span class="star-count"><?= $likesCount; ?></span>
+              <i class="fa fa-star-o"></i> <span class="star-count">Лайк <?= $likesCount; ?></span>
+            </div>
+            <div class="fav-block add-to-favourites" data-id="<?= $articles[$i]["id_article"]; ?>" data-user="<?= $idUser; ?>">
+              <i class="fa fa-plus-square-o" aria-hidden="true"></i> <span>В избранное</span>
             </div>
             <div class="comments-block">
               <?php $article = $articles[$i]["id_article"]; $commentsCount = count($db->loadArrayData("SELECT comment FROM comments WHERE id_article = '$article'")); ?>
