@@ -5,7 +5,6 @@ include_once "/php/db/db.php";
 $db = new db();
 
 include_once "/php/usersArticle.php";
-include_once "/php/pagination.php";
 
 $articlesUsers = $db->loadArrayData("SELECT * FROM articles INNER JOIN favourites ON favourites.id_article = articles.id_article WHERE favourites.id_user = '$idUser'");
 $countArt = $res[0]['num'];
@@ -103,16 +102,6 @@ $likes = $db->loadArrayData("SELECT uLike FROM likes");
             </div>
           </div>
         <? endfor; ?>
-
-        <div class="pagination">
-          <nav aria-label="...">
-            <ul class="pagination pagination-sm">
-              <?php for ($i = 1; $i <= $str_pag; $i++): ?>
-                <li class="page-item"><?= "<a href=myArticles.php?page=".$i.">".$i."</a>" ?></li>
-              <?php endfor; ?>
-            </ul>
-          </nav>
-        </div>
       </div>
     </div>
 

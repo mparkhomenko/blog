@@ -87,7 +87,7 @@ $countArt = $res[0]['num'];
           <label for="text-article">Текст статьи:</label>
           <textarea class="form-control" id="text-article" rows="20"></textarea>
           <br>
-          <select class="form-control" id="select-theme">
+          <select class="form-control" id="select-theme-1">
               <?php for($i = 0; $i < count($themes); $i++):?>
                 <option value="<?= $themes[$i]["id_theme"]; ?>">
                   <?= $themes[$i]["theme"]; ?>

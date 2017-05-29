@@ -97,8 +97,8 @@ $(document).ready(function() {
   $("#add-article-btn").on("click", function() {
     var text = $("#text-article").val();
     var header = $("#text-header").val();
-    var selind = document.getElementById("select-theme").options.selectedIndex;
-    var theme = document.getElementById("select-theme").options[selind].value;
+    var selind = document.getElementById("select-theme-1").options.selectedIndex;
+    var theme = document.getElementById("select-theme-1").options[selind].value;
 
     if (text != '' && theme != '') {
       $.ajax({
@@ -226,8 +226,6 @@ $(document).ready(function() {
               s.find('h2 .header-article').html(header).attr('href', 'article.php?id=' + id);
               s.find('.article-text').html(article);
               s.find('.article-text').html(article);
-              $('#header-clone-0').css('display', 'none');
-              $('.clone').css('display', 'block');
             }
           }
         }
@@ -360,6 +358,67 @@ $(document).ready(function() {
             break;
           default:
             alert("404");
+        }
+      }
+    });
+  });
+
+  $(".section").on("click", function () {
+    var sectionId = $(this).val();
+    $("#select-theme").removeAttr("disabled");
+    $.ajax({
+      type: "POST",
+      url: "/php/getThemes.php",
+      data: {
+        sectionId: sectionId
+      },
+      success: function(msg) {
+        var result = $.parseJSON(msg);
+        var resultLength = result.length;
+        var id = 0;
+        var theme = '';
+        $('#select-theme.theme:not(#theme-0)').remove();
+        for (var i = 0; i < resultLength; i++) {
+          $('#theme-0').clone().attr('id', 'theme-' + (i + 1)).insertAfter('#theme-' + i);
+          var s = $('#theme-' + (i + 1));
+          id = result[i]['id_theme'];
+          theme = result[i]['theme'];
+          $('#theme-' + i).val(id);
+          $('#theme-' + i).html(theme);
+        }
+      }
+    });
+  });
+
+  $("#select-theme").on("change", function () {
+    var themeId = $(this).val();
+    console.log(themeId);
+    $.ajax({
+      type: "POST",
+      url: "/php/getArticlesForThemes.php",
+      data: {
+        themeId: themeId
+      },
+      success: function(msg) {
+        if (msg == '2') {
+          alert('Ничего не найдено!');
+        } else {
+          console.log(msg);
+          var result = $.parseJSON(msg);
+          var resultLength = result.length;
+          var id = 0;
+          var article = '';
+          $('div.clone:not(#header-clone-0)').remove();
+          for (var i = 0; i < resultLength; i++) {
+            $('#header-clone-0').clone().attr('id', 'header-clone-' + (i + 1)).insertAfter('#header-clone-' + i);
+            var s = $('#header-clone-' + (i + 1));
+            id = result[i]['id_article'];
+            header = result[i]['header'];
+            article = result[i]['article'];
+            s.find('h2 .header-article').html(header).attr('href', 'article.php?id=' + id);
+            s.find('.article-text').html(article);
+            s.find('.article-text').html(article);
+          }
         }
       }
     });

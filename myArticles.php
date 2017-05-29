@@ -8,6 +8,7 @@ include_once "/php/usersArticle.php";
 include_once "/php/pagination.php";
 
 $articlesUsers = $db->loadArrayData("SELECT * FROM articles WHERE id_user = '$idUser' ORDER BY id_article DESC LIMIT $art, $kol");
+
 $countArt = $res[0]['num'];
 
 $likes = $db->loadArrayData("SELECT uLike FROM likes");
@@ -93,9 +94,6 @@ $likes = $db->loadArrayData("SELECT uLike FROM likes");
             <div class="star-block" data-article="<?= $articlesUsers[$i]["id_article"]; ?>" data-user="<?= $articlesUsers[$i]["id_user"]; ?>">
               <?php $article = $articlesUsers[$i]["id_article"]; $likesCount = count($db->loadArrayData("SELECT uLike FROM likes WHERE id_article = '$article'")); ?>
               <i class="fa fa-star-o"></i> <span class="star-count">Лайк <?= $likesCount; ?></span>
-            </div>
-            <div class="fav-block">
-              <i class="fa fa-plus-square-o" aria-hidden="true"></i> <span>В избранное</span>
             </div>
             <div class="fav-block delete-article" data-id="<?= $articlesUsers[$i]["id_article"]; ?>">
               <i class="fa fa-minus-square-o" aria-hidden="true"></i> <span>Удалить</span>

@@ -78,42 +78,28 @@ $sections = $db->loadArrayData("SELECT id_section, name FROM sections");
     <div class="container">
       <div class="row">
         <div class="form-group">
-          <select class="form-control" id="select-theme">
+          <select class="form-control" id="select-section">
+            <option>Выберите раздел</option>
             <?php for($i = 0; $i < count($sections); $i++):?>
-              <option value="<?= $sections[$i]["id_section"]; ?>">
+              <option class="section" value="<?= $sections[$i]["id_section"]; ?>">
                 <?= $sections[$i]["name"]; ?>
               </option>
             <?php endfor; ?>
           </select>
         </div>
         <div class="form-group">
-          <select class="form-control" disabled>
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
+          <select class="form-control" id="select-theme" disabled>
+            <option>Выберите тему</option>
+            <option class="theme-check" id="theme-0" value=""></option>
           </select>
         </div>
-        <div class="article col-lg-8 col-md-8 col-sm-6 col-xs-4">
-          <h2><a href="user.php">LinuxUser228</a></h2>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi aliquid unde beatae, tenetur eius qui debitis mollitia sequi consequuntur ipsam delectus quia nam pariatur fuga reprehenderit ullam ad provident esse.
-          </p>
-          <div class="article-count">
-            <i class="fa fa-file-text-o" aria-hidden="true"></i> <span>100</span>
-          </div>
+        <div class="clone article col-lg-8 col-md-8 col-sm-6 col-xs-4" id="header-clone-0">
+          <h2>
+            <a href="" class="header-article"></a>
+          </h2>
+          <p class="article-text"></p>
         </div>
       </div>
-        <!-- <ul class="pagination">
-          <li class="disabled"><a href="#">«</a></li>
-          <li class="active"><a href="#">1</a></li>
-          <li><a href="#">2</a></li>
-          <li><a href="#">3</a></li>
-          <li><a href="#">4</a></li>
-          <li><a href="#">5</a></li>
-          <li><a href="#">»</a></li>
-        </ul> -->
       </div>
     </div>
 
